@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmfgxlq0h617b"]
+
+[ext_resource type="Script" uid="uid://rsx6ydihl6wd" path="res://Scenes/Main/main.gd" id="1_lixft"]
+[ext_resource type="Texture2D" uid="uid://7nua5p8moxxx" path="res://assets/backgrounds/game_background_3/game_background_3.1.png" id="2_lixft"]
+[ext_resource type="LabelSettings" uid="uid://cqr7enwkpd5pe" path="res://Resources/Text/title_pink_96.tres" id="3_qw60k"]
+[ext_resource type="AudioStream" uid="uid://bci6mciivllow" path="res://assets/sound/Farm Frolics.ogg" id="4_5yls4"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lixft")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lixft")
+expand_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.282353)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.5
+offset_top = -48.5
+offset_right = 270.5
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Vixen Vault"
+label_settings = ExtResource("3_qw60k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5yls4")
+volume_db = -20.0
+autoplay = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 10
+columns = 5

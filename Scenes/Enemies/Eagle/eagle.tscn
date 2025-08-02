@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbqsr6nkt7dns"]
+
+[ext_resource type="PackedScene" uid="uid://bo5q7y1hqghdk" path="res://Scenes/EnemyBase/enemy_base.tscn" id="1_rctvk"]
+[ext_resource type="Script" uid="uid://ca5kexk7s1h5s" path="res://Scenes/Enemies/Eagle/eagle.gd" id="2_jesq6"]
+[ext_resource type="Texture2D" uid="uid://b6xltbm11hmji" path="res://assets/enemies/eagle/eagle-attack.png" id="3_laodr"]
+[ext_resource type="PackedScene" uid="uid://wvf275ofp1tt" path="res://Scenes/Shooter/shooter.tscn" id="4_vnjor"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_laodr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnjor"]
+atlas = ExtResource("3_laodr")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26eia"]
+atlas = ExtResource("3_laodr")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uhx3"]
+atlas = ExtResource("3_laodr")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbq4f"]
+atlas = ExtResource("3_laodr")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jesq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnjor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26eia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uhx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbq4f")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laodr"]
+size = Vector2(22, 21)
+
+[node name="Eagle" instance=ExtResource("1_rctvk")]
+collision_mask = 0
+script = ExtResource("2_jesq6")
+fly_speed = Vector2(35, 15)
+
+[node name="PhysicsCollisionShape2D" parent="." index="0"]
+position = Vector2(-1, 3)
+shape = SubResource("CircleShape2D_laodr")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_jesq6")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.311768
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-2, 2.5)
+shape = SubResource("RectangleShape2D_laodr")
+
+[node name="PlayerDetector" type="RayCast2D" parent="." index="4"]
+target_position = Vector2(0, 500)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="DirectionTimer" type="Timer" parent="." index="5"]
+process_callback = 0
+wait_time = 3.0
+
+[node name="Shooter" parent="." index="6" instance=ExtResource("4_vnjor")]
+_bullet_key = 3
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

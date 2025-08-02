@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqjc8782gmc5n"]
+
+[ext_resource type="Script" uid="uid://kfonydjnw582" path="res://Scenes/HUD/hud.gd" id="1_a56j6"]
+[ext_resource type="Texture2D" uid="uid://cbgfp6d2vimey" path="res://assets/items/pixel heart 2.png" id="2_a56j6"]
+[ext_resource type="LabelSettings" uid="uid://cpkstiilechks" path="res://Resources/Text/title_light_blue_48.tres" id="2_k83ni"]
+[ext_resource type="LabelSettings" uid="uid://j5bj4t3n1yyw" path="res://Resources/Text/title_white_96.tres" id="4_k83ni"]
+[ext_resource type="LabelSettings" uid="uid://bakoeprldedte" path="res://Resources/Text/title_white_36.tres" id="5_6pkbx"]
+
+[node name="HUD" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a56j6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "0000"
+label_settings = ExtResource("2_k83ni")
+
+[node name="Lives" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Heart" type="TextureRect" parent="MarginContainer/Lives"]
+layout_mode = 2
+texture = ExtResource("2_a56j6")
+
+[node name="Heart2" type="TextureRect" parent="MarginContainer/Lives"]
+layout_mode = 2
+texture = ExtResource("2_a56j6")
+
+[node name="Heart3" type="TextureRect" parent="MarginContainer/Lives"]
+layout_mode = 2
+texture = ExtResource("2_a56j6")
+
+[node name="Heart4" type="TextureRect" parent="MarginContainer/Lives"]
+layout_mode = 2
+texture = ExtResource("2_a56j6")
+
+[node name="Heart5" type="TextureRect" parent="MarginContainer/Lives"]
+layout_mode = 2
+texture = ExtResource("2_a56j6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.411765)
+
+[node name="VBoxGameOver" type="VBoxContainer" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -48.5
+offset_right = 241.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="ColorRect/VBoxGameOver"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GAME OVER"
+label_settings = ExtResource("4_k83ni")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect/VBoxGameOver"]
+layout_mode = 2
+text = "Press Esc"
+label_settings = ExtResource("5_6pkbx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxComplete" type="VBoxContainer" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -48.5
+offset_right = 241.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelCompleteLabel" type="Label" parent="ColorRect/VBoxComplete"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "LEVEL COMPLETE"
+label_settings = ExtResource("4_k83ni")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect/VBoxComplete"]
+layout_mode = 2
+text = "Press Shoot"
+label_settings = ExtResource("5_6pkbx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0

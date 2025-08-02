@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwl04qnf85riu"]
+
+[ext_resource type="Script" uid="uid://r1888hi0wfih" path="res://Scenes/Bullets/BaseBullet/base_bullet.gd" id="1_2ixmu"]
+[ext_resource type="Script" uid="uid://vugueh1evirc" path="res://Scenes/LifeTimer/life_timer.gd" id="2_vvngk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jb15y"]
+radius = 4.0
+
+[node name="BaseBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_2ixmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jb15y")
+
+[node name="LifeTimer" type="Node" parent="."]
+script = ExtResource("2_vvngk")
+metadata/_custom_type_script = "uid://vugueh1evirc"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(4, 0)
+collision_mask = 96
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

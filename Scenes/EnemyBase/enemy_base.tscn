@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo5q7y1hqghdk"]
+
+[ext_resource type="Script" uid="uid://db7bxjov05m74" path="res://Scenes/EnemyBase/enemy_base.gd" id="1_7ioos"]
+
+[node name="EnemyBase" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 97
+script = ExtResource("1_7ioos")
+
+[node name="PhysicsCollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
